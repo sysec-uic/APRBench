@@ -6,7 +6,7 @@
 - A collection of vulnerable programs with known issues.
 - Inputs classified as:
   - **Crash-triggering inputs** (found in the `crashes` folder).
-  - **Safe inputs** (found in the `queue` folder).
+  - **Inputs that increased program coverage** but did not necessarily cause crashes (found in the `queue` folder).
 - Support for testing repaired programs to verify correctness and robustness.
 - Docker-based isolation for reproducibility and ease of use.
 
@@ -22,18 +22,17 @@ cd APRBench
 ```
 
 ### **Build the Docker Image**
-Use the provided Dockerfile to build the Docker image:
+Use the provided Dockerfile to build the Docker image for each test case (e.g., `01-quickstart`):
+
 ```
-cd 01-quickstart    # Currently, we only have one test case.
-docker build -t aprbench .
+docker build --build-arg TEST_CASE=01-quickstart -t aprbench-01 .
 ```
 
 ### **Run the Container**
-
-Run the container:
+After building the image, run the container to test the program:
 
 ```
-docker run --rm aprbench
+docker run --rm aprbench-01
 ```
 
 ### **Crash Rate Calculation**
@@ -43,6 +42,7 @@ The `test.sh` script outputs:
 - Crash rate (percentage of inputs causing crashes).
 
 Example output:
+
 ```
 ... ...
 =====================================

@@ -34,7 +34,7 @@ test_input() {
     fi
 
     # Run the vulnerable program with the input
-    ./vulnerable < "$input_file"
+    ./src/vulnerable < "$input_file"
     EXIT_CODE=$?
 
     # Check the exit code to determine if the program crashed
@@ -67,8 +67,8 @@ while getopts "l:" opt; do
 done
 
 # Directories containing AFL-generated inputs
-CRASHES_DIR="out/crashes"
-QUEUE_DIR="out/queue"
+CRASHES_DIR="inputs/crashes"
+QUEUE_DIR="inputs/queue"
 
 # Test all inputs in the crashes directory
 if [ -d "$CRASHES_DIR" ]; then
